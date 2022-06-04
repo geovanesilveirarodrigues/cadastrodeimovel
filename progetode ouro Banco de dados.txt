@@ -1,0 +1,106 @@
+CREATE DATABASE cadastrodeimovel;
+USE cadastrodeimovel;
+CREATE TABLE proprietario(
+        cpf varchar(20) PRIMARY KEY,
+        nome varchar(50) not null,
+        dataNascimento date
+    );
+CREATE TABLE corretor(
+        cpf varchar(20) PRIMARY KEY,
+        nome varchar(50) not null,
+        dataNascimento date
+    );
+CREATE table imovel(
+        id int PRIMARY KEY AUTO_INCREMENT,
+        cidade varchar(20) not null,
+        bairro varchar(20) not null,
+        rua varchar(50) not null,
+        numero int not null,
+        complemento varchar(15),
+        cep char(10),
+        cpf_proprietario varchar(20),
+        FOREIGN KEY(cpf_proprietario) REFERENCES proprietario(cpf)
+    );
+CREATE TABLE inquilino(
+        cpf varchar(20) PRIMARY KEY,
+        nome varchar(50) not null,
+        dataNascimento date,
+        salario decimal(7,2),
+        id_imovel int,
+        FOREIGN KEY(id_imovel) REFERENCES imovel(id)
+    );
+CREATE TABLE contactar(
+        id int PRIMARY KEY AUTO_INCREMENT,
+        datacontato date not null,
+        cpf_proprietario varchar(20),
+        cpf_corretor varchar(20),
+        FOREIGN KEY(cpf_proprietario) REFERENCES proprietario(cpf),
+        FOREIGN KEY(cpf_corretor) REFERENCES corretor(cpf)
+    );
+CREATE TABLE atendente(
+        id int PRIMARY KEY AUTO_INCREMENT,
+        dataatendimento date not null,
+        cpf_corretor varchar(20),
+        cpf_inquilinio varchar(20),
+        FOREIGN KEY(CPF_Co) REFERENCES corretor(CPF),
+        FOREIGN KEY(CPF_inq) REFERENCES inquilino(CPF)
+    );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CREATE TABLE proprietario(
+        cpf varchar(20) PRIMARY KEY,
+        nome varchar(50) not null,
+        dataNascimento date
+    );
+CREATE TABLE corretor(
+        cpf varchar(20) PRIMARY KEY,
+        nome varchar(50) not null,
+        dataNascimento date
+    );
+CREATE table imovel(
+        id int PRIMARY KEY AUTO_INCREMENT,
+        cidade varchar(20) not null,
+        bairro varchar(20) not null,
+        rua varchar(50) not null,
+        numero int not null,
+        complemento varchar(15),
+        cep char(10),
+        cpf_proprietario varchar(20),
+        FOREIGN KEY(cpf_proprietario) REFERENCES proprietario(cpf)
+    );
+CREATE TABLE inquilino(
+        cpf varchar(20) PRIMARY KEY,
+        nome varchar(50) not null,
+        dataNascimento date,
+        salario decimal(7,2),
+        id_imovel int,
+        FOREIGN KEY(id_imovel) REFERENCES imovel(id)
+    );
+CREATE TABLE contactar(
+        id int PRIMARY KEY AUTO_INCREMENT,
+        datacontato date not null,
+        cpf_proprietario varchar(20),
+        cpf_corretor varchar(20),
+        FOREIGN KEY(cpf_proprietario) REFERENCES proprietario(cpf),
+        FOREIGN KEY(cpf_corretor) REFERENCES corretor(cpf)
+    );
+CREATE TABLE atendente(
+        id int PRIMARY KEY AUTO_INCREMENT,
+        dataatendimento date not null,
+        cpf_corretor varchar(20),
+        cpf_inquilinio varchar(20),
+        FOREIGN KEY(cpf_corretor) REFERENCES corretor(cpf),
+        FOREIGN KEY( cpf_inquilinio) REFERENCES inquilino(cpf)
+    );
